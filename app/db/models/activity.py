@@ -11,6 +11,7 @@ class Activity(Base):
     parent_id = Column(Integer, ForeignKey('activities.id', ondelete='CASCADE'), nullable=True)
     level = Column(Integer, default=0, nullable=False)
 
-    parent = relationship('Activity', remote_side=['id'], backref='children')
+    parent = relationship('Activity', remote_side=['id'], back_populates='children')
+    children = relationship('Activity', back_populates='parent')
 
     organizations = relationship("Organization", secondary="organization_activity", back_populates="activities")

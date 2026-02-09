@@ -1,5 +1,5 @@
 from app.database import Base
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, Index
 
 
 class Building(Base):
@@ -9,3 +9,6 @@ class Building(Base):
     address = Column(String(500), nullable=False)
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
+
+
+__table_args__ = (Index('idx_building_location', 'latitude', 'longitude'))

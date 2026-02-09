@@ -11,12 +11,12 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
 
+    API_KEY: str
+    API_KEY_NAME: str = 'X-API-Key'
+
     @property
     def DATABASE_URL(self) -> str:
         return f'postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}/{self.POSTGRES_DB}'
-
-    API_KEY: str
-    API_KEY_NAME: str = 'X-API-Key'
 
     class Config:
         env_file = '.env'
